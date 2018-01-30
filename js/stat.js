@@ -40,7 +40,8 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.fillText('Список результатов:', CLOUD_X + GAP_SMALL * 2, GAP_BIG + TEXT_HEIGHT);
 
   var maxTime = getMaxElement(times);
-  var renderBar = function () {
+
+  for (var i = 0; i < names.length; i++) {
     ctx.fillStyle = '#000';
 
     var timeRounded = Math.floor(times[i]);
@@ -57,10 +58,6 @@ window.renderStatistics = function (ctx, names, times) {
     }
 
     ctx.fillRect(CLOUD_X + GAP_BIG + (BAR_GAP + BAR_WIDTH) * i, CLOUD_Y + GAP_BIG + TEXT_HEIGHT + GAP_SMALL * 2 + barOffset, BAR_WIDTH, (BAR_HEIGHT * times[i]) / maxTime);
-  };
-
-  for (var i = 0; i < names.length; i++) {
-    renderBar();
   }
 
 };
