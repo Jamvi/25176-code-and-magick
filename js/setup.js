@@ -27,7 +27,7 @@ var openPopup = function () {
 
 var closePopup = function () {
   setupModal.classList.add('hidden');
-  document.addEventListener('keydown', onPopupEscPress);
+  document.removeEventListener('keydown', onPopupEscPress);
 };
 
 var setupModalOpen = document.querySelector('.setup-open');
@@ -78,6 +78,7 @@ userNameInput.addEventListener('invalid', function () {
   }
 });
 
+// fix for Edge browser
 userNameInput.addEventListener('input', function (evt) {
   var target = evt.target;
   if (target.value.length < 2) {
