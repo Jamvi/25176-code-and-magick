@@ -2,6 +2,7 @@
 
 (function () {
   var setupModal = document.querySelector('.setup');
+  var setupForm = document.querySelector('.setup-wizard-form');
   var userNameInput = setupModal.querySelector('.setup-user-name');
 
   userNameInput.addEventListener('invalid', function () {
@@ -24,6 +25,13 @@
     } else {
       target.setCustomValidity('');
     }
+  });
+
+  setupForm.addEventListener('submit', function (evt) {
+    evt.preventDefault();
+    window.backend.save(new FormData(setupForm), window.dialog.closePopup, function (errorMessage) {
+      window.error.errorHandler(errorMessage);
+    });
   });
 
 })();

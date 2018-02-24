@@ -14,6 +14,11 @@
     return items[Math.floor(Math.random() * items.length)];
   };
 
+  var getRandomUniqueElement = function (items) {
+    var uniqueElement = items.splice(Math.random() * items.length, 1);
+    return uniqueElement[0];
+  };
+
   var getMaxElement = function (arr) {
     var maxElement = arr[0];
 
@@ -56,6 +61,7 @@
 
   window.util = {
     getRandomElement: getRandomElement,
+    getRandomUniqueElement: getRandomUniqueElement,
     getMaxElement: getMaxElement,
     isEnterEvent: isEnterEvent,
     isEscEvent: isEscEvent,
