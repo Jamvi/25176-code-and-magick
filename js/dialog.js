@@ -112,4 +112,7 @@
     document.addEventListener('mouseup', onMouseUp);
   });
 
+  window.dialog = {
+    closePopup: closePopup
+  };
 })();
