@@ -3,6 +3,8 @@
 (function () {
   var ENTER_KEYCODE = 13;
   var ESC_KEYCODE = 27;
+  var DEBOUNCE_INTERVAL = 500;
+  var lastTimeout;
 
   var COLORS = {
     coat: ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'],
@@ -54,9 +56,22 @@
         element.style.backgroundColor = color;
       } else {
         element.style.fill = color;
+        if (element.classList.contains('wizard-coat')) {
+          window.similar.onCoatChange(color);
+        } else {
+          window.similar.onEyesChange(color);
+        }
+
       }
       field.value = color;
     });
+  };
+
+  var debounce = function (fun) {
+    if (lastTimeout) {
+      window.clearTimeout(lastTimeout);
+    }
+    lastTimeout = window.setTimeout(fun, DEBOUNCE_INTERVAL);
   };
 
   window.util = {
@@ -66,7 +81,8 @@
     isEnterEvent: isEnterEvent,
     isEscEvent: isEscEvent,
     getRandomColor: getRandomColor,
-    colorize: colorize
+    colorize: colorize,
+    debounce: debounce
   };
 
 })();
